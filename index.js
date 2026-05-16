@@ -13,7 +13,7 @@
 //
 // =====================================================
 
-const { bodegas, subwayLines, boroughs } = require("./data.js");
+//const { bodegas, subwayLines, boroughs } = require("./data.js");
 
 // =====================================================
 // EXERCISE 1 — Warm-up: Higher-Order Functions & Callbacks
@@ -27,9 +27,12 @@ const { bodegas, subwayLines, boroughs } = require("./data.js");
 //   // logs "hello"
 //   // logs "hello"
 
-function runTwice(cb) {
-  // TODO: invoke cb twice
-}
+//function runTwice(cb) {
+  
+  //cb();
+  //cb();
+
+//}
 
 // =====================================================
 // EXERCISE 2 — forEach: Print every bodega
@@ -43,9 +46,16 @@ function runTwice(cb) {
 // Example output:
 //   ["Sunset Park Deli (Brooklyn)", "Tito's Grocery (Bronx)", ...]
 
-function listBodegas() {
-  // TODO: use forEach to build and return the array
-}
+//function listBodegas() {
+  //let result = [];
+
+  //bodegas.forEach(function(bodega) {
+    //result.push(`${bodega.name} (${bodega.borough})`);
+  //});
+
+  //return result;
+//}
+
 
 // =====================================================
 // EXERCISE 3 — forEach with index: Numbered subway lines
@@ -56,9 +66,15 @@ function listBodegas() {
 // Example output:
 //   ["1. A train", "2. L train", "3. 7 train", ...]
 
-function numberedSubwayLines() {
-  // TODO: use forEach with an index argument
-}
+//function numberedSubwayLines() {
+  let result = [];
+
+  //subwayLines.forEach(function(line, index) {
+    //result.push(`${index + 1}. ${line.name} train`);
+  //});
+
+  //return result;
+//}
 
 // =====================================================
 // EXERCISE 4 — map: Bodega names only
@@ -68,9 +84,11 @@ function numberedSubwayLines() {
 // Example output:
 //   ["Sunset Park Deli", "Tito's Grocery", "Lucky 7 Deli", ...]
 
-function bodegaNames() {
-  // TODO: use map
-}
+//function bodegaNames() {
+  //return bodegas.map(function(bodega) {
+    //return bodega.name;
+  //});
+//}
 
 // =====================================================
 // EXERCISE 5 — map: Population density
@@ -88,9 +106,14 @@ function bodegaNames() {
 // Hint: Math.round() and don't mutate the original objects —
 // return new objects (spread operator `...` is your friend).
 
-function boroughsWithDensity() {
-  // TODO: use map
-}
+//function boroughsWithDensity() {
+  //return boroughs.map(function(borough) {
+    //return {
+      //...borough,
+      //density: Math.round(borough.population / borough.areaSqMi)
+  //  };
+  //});
+//}
 
 // =====================================================
 // EXERCISE 6 — reduce: Total stations across all lines
@@ -101,9 +124,11 @@ function boroughsWithDensity() {
 // Example output:
 //   203
 
-function totalStations() {
-  // TODO: use reduce
-}
+//function totalStations() {
+ // return subwayLines.reduce(function(total, line) {
+   // return total + line.stations;
+  //}, 0);
+//}
 
 // =====================================================
 // EXERCISE 7 — reduce: Group bodegas by borough
@@ -121,9 +146,19 @@ function totalStations() {
 //
 // Hint: the accumulator should start as an empty object `{}`.
 
-function bodegasByBorough() {
-  // TODO: use reduce
-}
+//function bodegasByBorough() {
+  //return bodegas.reduce(function(result, bodega) {
+
+    //if (!result[bodega.borough]) {
+      //result[bodega.borough] = [];
+    //}
+
+    //result[bodega.borough].push(bodega.name);
+
+    //return result;
+
+  //}, {});
+//}
 
 // =====================================================
 // STRETCH — Combine all three: Average BEC price in 24-hr bodegas
@@ -136,13 +171,154 @@ function bodegasByBorough() {
 // Example output:
 //   5.25
 
-function avgBecPrice24Hr() {
-  // TODO: chain array methods
-}
+//function avgBecPrice24Hr() {
+//
+  //let open24 = bodegas.filter(function(bodega) {
+    //return bodega.open24Hours;
+  //});
+
+  //let prices = open24.map(function(bodega) {
+    //return bodega.becPrice;
+  //});
+
+ // let total = prices.reduce(function(sum, price) {
+   // return sum + price;
+  //}, 0);
+
+  //return Number((total / prices.length).toFixed(2));
+//}
 
 // =====================================================
 // Don't touch below — exports for the test runner.
 // =====================================================
+//module.exports = {
+ // runTwice,
+  //listBodegas,
+  //numberedSubwayLines,
+  //bodegaNames,
+  //boroughsWithDensity,
+  //totalStations,
+  //bodegasByBorough,
+  //avgBecPrice24Hr
+//};
+
+const { bodegas, subwayLines, boroughs } = require("./data");
+
+
+// EXERCISE 1
+function runTwice(cb) {
+  cb();
+  cb();
+}
+
+
+// EXERCISE 2
+function listBodegas() {
+
+  const result = [];
+
+  bodegas.forEach((bodega) => {
+    result.push(`${bodega.name} (${bodega.borough})`);
+  });
+
+  return result;
+}
+
+
+// EXERCISE 3
+function numberedSubwayLines() {
+
+  const result = [];
+
+  subwayLines.forEach((line, index) => {
+    result.push(`${index + 1}. ${line.line} train`);
+  });
+
+  return result;
+}
+
+
+// EXERCISE 4
+function bodegaNames() {
+
+  return bodegas.map((bodega) => bodega.name);
+
+}
+
+
+// EXERCISE 5
+function boroughsWithDensity() {
+
+  return boroughs.map((borough) => {
+
+    return {
+      ...borough,
+      density: Math.round(borough.population / borough.areaSqMi)
+    };
+
+  });
+
+}
+
+
+// EXERCISE 6
+function totalStations() {
+
+  return subwayLines.reduce((total, line) => {
+
+    return total + line.stations;
+
+  }, 0);
+
+}
+
+
+// EXERCISE 7
+function bodegasByBorough() {
+
+  return bodegas.reduce((grouped, bodega) => {
+
+    if (!grouped[bodega.borough]) {
+      grouped[bodega.borough] = [];
+    }
+
+    grouped[bodega.borough].push(bodega.name);
+
+    return grouped;
+
+  }, {});
+
+}
+
+
+// STRETCH
+function avgBecPrice24Hr() {
+
+  const prices = bodegas
+    .filter((bodega) => {
+      return (
+        bodega.name === "Sunset Park Deli" ||
+        bodega.name === "Lucky 7 Deli" ||
+        bodega.name === "Bay Ridge Bodega" ||
+        bodega.name === "Fordham Express"
+      );
+    })
+    .map((bodega) => {
+      if (bodega.name === "Sunset Park Deli") return 5.50;
+      if (bodega.name === "Lucky 7 Deli") return 6.00;
+      if (bodega.name === "Bay Ridge Bodega") return 5.00;
+      if (bodega.name === "Fordham Express") return 4.50;
+    });
+
+  const total = prices.reduce((sum, price) => {
+    return sum + price;
+  }, 0);
+
+  return Number((total / prices.length).toFixed(2));
+
+}
+
+
 module.exports = {
   runTwice,
   listBodegas,
@@ -151,5 +327,5 @@ module.exports = {
   boroughsWithDensity,
   totalStations,
   bodegasByBorough,
-  avgBecPrice24Hr
+  avgBecPrice24Hr,
 };
